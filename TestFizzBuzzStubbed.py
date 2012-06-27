@@ -4,10 +4,15 @@ import FizzBuzz
 """
 Q3. What will be printed when we execute 'python FizzBuzzStubbed.py' ? [3 pts]
 
-
-
-
-
+setUpClass FizzBuzzStubbed
+setup
+test_report
+teardown
+test_report
+setup
+test_report
+teardown
+tearDownClass
 
 
 
@@ -15,6 +20,18 @@ Q3. What will be printed when we execute 'python FizzBuzzStubbed.py' ? [3 pts]
 Q4. Implement MyStub class so that you can send it as a fake object to the
     report method of FizzBuzz object from a test case. [3 pts]
 
+external contributer for file operations needs to be faked in the MyStub class, this includes faking open,write and close operations
+
+class MyStub(object):
+    def __init__(self):
+        self.openflag=False
+        self.values=[] # create empty list
+    def open(self):
+        self.openflag = True #"open fake file"
+    def write(self,msg):
+        self.values.append(msg) # append values to list
+    def close():
+        self.openflag = False # close fake "file"
 """
 class MyStub(object):
     pass
