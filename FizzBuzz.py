@@ -12,6 +12,44 @@ the calls to open , write and close will be substituted by the fileWrapper.
 This wrapper can be mocked and code logic can be tested accordingly.
 
 
+class FizzBuzz(object):
+    def report(self, numbers,filehandle):
+
+        filehandle.open()
+        
+        for number in numbers:
+            msg = str(number) + " "
+            fizzbuzz_found = False
+            if number % 3 == 0:
+                msg += "fizz "
+                fizzbuzz_found = True
+            if number % 5 == 0:
+                msg += "buzz "
+                fizzbuzz_numbersfound = True
+
+            if fizzbuzz_found:
+                filehandle.write(msg + "\n")
+
+        filehandle.close()
+
+if "__main__" == __name__:
+    fb = FizzBuzz()
+    wrapper = filewrapper('fizzbuzz_report.txt', 'w')
+    fb.report(range(100),wrapper)
+
+class filewrapper:
+    def __init__(self,fname,mode):
+        self.fname = fname
+        self.mode = mode
+    def open(self):
+        self.fh = open(self.fname,self.mode)
+        return self.fh
+
+    def write(self,msg):
+        self.fh.write(msg)
+
+    def close(self):
+        self.fh.close()
 """
 class FizzBuzz(object):
     def report(self, numbers):
